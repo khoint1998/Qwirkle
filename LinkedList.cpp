@@ -1,12 +1,20 @@
 
 #include "LinkedList.h"
 
+#include<iostream>
+
 LinkedList::LinkedList() {
    head = nullptr;
 }
 
 LinkedList::~LinkedList() {
-
+  Node* n = head;
+  Node* temp = nullptr;
+  while (n != nullptr){
+    temp = n->next;
+    delete n;
+    n = temp;
+  }
 }
 
 void LinkedList::addFront(Tile* t){
@@ -53,6 +61,24 @@ bool LinkedList::contains(Tile* t){
   return found;
 }
 
-void LinkedList::remove(int index){
+void LinkedList::removeFirst(){
+  if(head == nullptr){
+    std::cout << "Empty List" << std::endl;
+  } else {
+    Node* n = head;
+    head = head->next;
+    delete n;
+  }
+}
 
+void LinkedList::removeLast(){
+  Node* n = nullptr;
+  Node* prev = nullptr;
+  n = head;
+  while (n->next != nullptr){
+    prev = n;
+    n = n->next;
+  }
+  prev->next = nullptr;
+  delete n;
 }

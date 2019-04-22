@@ -12,9 +12,10 @@ public:
 
    void addFront(Tile* t);
    void addBack(Tile* t);
-   void remove(int index);
+   void removeFirst();
    bool contains(Tile* t);
    Tile* get(int index);
+   void removeLast();
 
 private:
    Node* head;
