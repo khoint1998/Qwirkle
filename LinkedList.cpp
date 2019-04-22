@@ -52,7 +52,7 @@ bool LinkedList::contains(Tile* t){
   bool found = false;
   Node *node = head;
 
-  while(node != nullptr && !found){
+  while(node != nullptr && found == false){
     if(node->tile->compareTile(t)){
       found = true;
     }
