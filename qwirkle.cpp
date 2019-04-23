@@ -1,5 +1,6 @@
 
 #include "LinkedList.h"
+#include "Player.h"
 
 #include <iostream>
 
@@ -12,5 +13,7 @@ int main(void) {
    std::cout << "Welcome to Qwirkle!" << std::endl;
    std::cout << "-------------------" << std::endl;
 
+   Player* a = new Player("Khoi");
+   delete a;
    return EXIT_SUCCESS;
 }

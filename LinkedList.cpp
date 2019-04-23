@@ -1,10 +1,11 @@
 
 #include "LinkedList.h"
 
-#include<iostream>
+#include <iostream>
 
 LinkedList::LinkedList() {
    head = nullptr;
+   size = 0;
 }
 
 LinkedList::~LinkedList() {
@@ -15,16 +16,7 @@ LinkedList::~LinkedList() {
     delete n;
     n = temp;
   }
-}
-
-void LinkedList::addFront(Tile* t){
-  Node* n = new Node(t,nullptr);
-  if(head != nullptr){
-    n->next = head;
-    head = n;
-  } else {
-    head = n;
-  }
+  size = 0;
 }
 
 void LinkedList::addBack(Tile*t){
@@ -38,6 +30,7 @@ void LinkedList::addBack(Tile*t){
     }
     tail->next = n;
   }
+  size++;
 }
 
 Tile* LinkedList::get(int index){
@@ -69,16 +62,38 @@ void LinkedList::removeFirst(){
     head = head->next;
     delete n;
   }
+  size--;
 }
 
-void LinkedList::removeLast(){
-  Node* n = nullptr;
-  Node* prev = nullptr;
-  n = head;
-  while (n->next != nullptr){
-    prev = n;
-    n = n->next;
-  }
-  prev->next = nullptr;
-  delete n;
+std::string LinkedList::displayList() {
+   std::string result = "";
+   Node* current = head;
+
+   while(current != nullptr) {
+      if(current->next != nullptr) {
+         result = result + current->tile->getColour() + std::to_string(current->tile->getShape()) +",";
+      }
+      else {
+         result = result + current->tile->getColour() + std::to_string(current->tile->getShape());
+      }
+   }
+
+   return result;
+}
+
+void LinkedList::remove(Tile* tile) {
+   if(head != nullptr) {
+      Node* toDelete = head;
+      while(toDelete->tile->getColour() != tile->getColour() && toDelete->tile->getShape() != tile->getShape() && toDelete != nullptr)
+      {
+         toDelete = toDelete->next;
+      }
+
+      delete toDelete;
+      size--;
+   }
+}
+
+int LinkedList::getSize(){
+  return size;
 }
