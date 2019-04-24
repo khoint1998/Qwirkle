@@ -1,14 +1,13 @@
 
-#ifndef ASSIGN2_GRID_H
-#define ASSIGN2_GRID_H
+#ifndef ASSIGN2_BOARDDISPLAY_H
+#define ASSIGN2_BOARDDISPLAY_H
 
 #include <iostream>
 #include "Board.h"
 
 typedef char** Grid;
 
-class Grids {
-public:
+namespace BoardDisplay {
   Grid makeGrid(Board& b);
   void buildGrid(Grid& grid, Board& b);
   void placeTile(Grid& grid, Board& b);
@@ -16,4 +15,4 @@ public:
   void deleteGrid(Grid grid, Board& b);
 };
 
-#endif //ASSIGN2_GRID_H
+#endif //ASSIGN2_BOARDDISPLAY_H

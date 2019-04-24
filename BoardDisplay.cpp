@@ -1,8 +1,8 @@
 
-#include "Grids.h"
+#include "BoardDisplay.h"
 
 //Create a 2D array of char for displaying
-Grid Grids::makeGrid(Board& b) {
+Grid BoardDisplay::makeGrid(Board& b) {
   Grid grid = NULL;
   if (b.getRowsCharLength() >= 0 && b.getColsCharLength() >= 0) {
     grid = new char*[b.getRowsCharLength()];
@@ -15,7 +15,7 @@ Grid Grids::makeGrid(Board& b) {
 
 //Build the layout of the board (rows index, cols index, '|', '---', space)
 //This will be refactor in future update
-void Grids::buildGrid(Grid& grid, Board& b) {
+void BoardDisplay::buildGrid(Grid& grid, Board& b) {
   int initialColsCoordinateOfFirstDigit = 3;
   int initialColsCoordinateOfSecondDigit = 4;
   int initialColsCoordinateOfDashSeperator = 2;
@@ -53,7 +53,7 @@ void Grids::buildGrid(Grid& grid, Board& b) {
 }
 
 //Update the tile position if new tile added into the board
-void Grids::placeTile(Grid& grid, Board& b) {
+void BoardDisplay::placeTile(Grid& grid, Board& b) {
   for (int i = 0; i < b.getRows(); i++) {
     for (int j = 0; j < b.getCols(); j++) {
       Coordinate c = Coordinate(i, j);
@@ -65,7 +65,7 @@ void Grids::placeTile(Grid& grid, Board& b) {
   }
 }
 
-void Grids::printGrid(Grid grid, Board& b) {
+void BoardDisplay::printGrid(Grid grid, Board& b) {
   for (int i = 0; i < b.getRowsCharLength(); i++) {
     for (int j = 0; j < b.getColsCharLength(); j++) {
       std::cout << grid[i][j];
@@ -75,7 +75,7 @@ void Grids::printGrid(Grid grid, Board& b) {
   return;
 }
 
-void Grids::deleteGrid(Grid grid, Board& b) {
+void BoardDisplay::deleteGrid(Grid grid, Board& b) {
   if (b.getRowsCharLength() >= 0 && b.getColsCharLength() >= 0) {
     for (int i = 0; i != b.getRowsCharLength(); ++i) {
       delete grid[i];
