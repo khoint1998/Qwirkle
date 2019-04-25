@@ -19,8 +19,8 @@ void GameEngine::getState(Player* p){
   std::cout << p->getPlayerName() << ", it's your turn" << std::endl;
   printScore();
   std::cout << std::endl;
-  //the printBoard function
 
+  //the printBoard function
   BoardDisplay::placeTile(g,b);
   BoardDisplay::printGrid(g,b);
   std::cout << "\nYour hand is: " << std::endl;
