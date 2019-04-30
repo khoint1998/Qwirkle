@@ -14,7 +14,7 @@ GameEngine::~GameEngine(){
   delete b;
 }
 
-void GameEngine::saveGame(std::string filename){
+void GameEngine::saveGame(std::string filename, Player* player){
   std::ofstream outFile;
   outFile.open(filename);
   for (int i = 0; i < this->playerCount; i++){
@@ -22,15 +22,17 @@ void GameEngine::saveGame(std::string filename){
     outFile << playerList[i]->getPlayerScore() << std::endl;
     outFile << playerList[i]->displayTileInHand() << std::endl;
   }
+  //print board
   for (int i = 0; i < b->getRowsCharLength(); i++) {
     for (int j = 0; j < b->getColsCharLength(); j++) {
       outFile << g[i][j];
     }
     outFile << "\n";
   }
-  //Need Tile bag
+  //print Tile bag
   outFile << tileBag->displayList() << std::endl;
   //Display Turn
+  outFile << player->getPlayerName()<< std::endl;
 
 }
 
