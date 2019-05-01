@@ -14,6 +14,8 @@ int main(void) {
    GameEngine* game = new GameEngine();
    Player* a = new Player(1,"Khoi");
    game->addPlayer(a);
+   Tile* t = new Tile('B',4);
+   a->getPlayerHand()->addBack(t);
    game->printState(a);
    game->saveGame("a.txt",a);
    delete a;

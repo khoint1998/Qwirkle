@@ -39,3 +39,7 @@ void Player::setPlayerId(int id){
 int Player::getPlayerId(){
   return this->id;
 }
+
+LinkedList* Player::getPlayerHand(){
+  return this->hand;
+}

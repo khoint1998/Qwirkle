@@ -14,6 +14,7 @@ public:
     int getPlayerId();
     std::string getPlayerName();
     int getPlayerScore();
+    LinkedList* getPlayerHand();
 
     void setPlayerId(int id);
     void setPlayerName(std::string name);

@@ -138,6 +138,7 @@ std::string LinkedList::displayList()
       {
          result = result + current->tile->getColour() + std::to_string(current->tile->getShape());
       }
+      current = current->next;
    }
 
    return result;
