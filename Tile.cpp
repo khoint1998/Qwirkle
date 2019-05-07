@@ -28,17 +28,40 @@ void Tile::setColour(Colour c){
 }
 
 bool Tile::compareTile(Tile* t){
+
+  bool result = false;
   if(this->colour == t->getColour() && this->shape == t->getShape()){
-    return true;
-  } else {
-    return false;
+    result = true;
   }
+  
+  return result; 
 }
 
-std::string Tile::toString() {
-  return colour + ((shape == 0) ? " " : std::to_string(shape));
+//Khoa's works
+Tile::Tile(const Tile &t) {
+	colour = t.colour;
+	shape = t.shape;
 }
 
-bool Tile::isExist() {
-  return (shape != 0 || colour != ' ');
+bool Tile::isSameColour(const Tile &t) {
+	return colour == t.colour;
+}
+
+bool Tile::isSameShape(const Tile &t) {
+	return shape == t.shape;
+}
+
+std::ostream &operator<<(std::ostream &out, const Tile &t) {
+	out << t.colour << std::to_string(t.shape);
+	return out;
+}
+
+Tile &Tile::operator=(const Tile &t) {
+	colour = t.colour;
+	shape = t.shape;
+	return *this;
+}
+
+bool operator==(const Tile &t1, const Tile &t2) {
+	return t1.colour == t2.colour && t1.shape == t2.shape;
 }

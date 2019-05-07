@@ -1,37 +1,62 @@
 #include "Coordinate.h"
 
-Coordinate::Coordinate() {
+#include <string>
 
+Coordinate::Coordinate(char y, int x) {
+	m_x = x;
+	m_y = y - 65;
+	m_tile = nullptr;
 }
 
-Coordinate::Coordinate(int x, int y) {
-  setXY(x, y);
+Coordinate::Coordinate(char y, int x, Tile& t) {
+	m_x = x;
+	m_y = y - 65;
+	m_tile = &t;
 }
 
-Coordinate::Coordinate(int x, char y) {
-  setXY(x, y - 65);
-}
-
-void Coordinate::setXY(int x, int y) {
-  m_x = x;
-  m_y = y;
+Coordinate::Coordinate(const Coordinate &c) {
+	m_y = c.m_y;
+	m_x = c.m_x;
+	m_tile = new Tile(c.m_tile->getColour(), c.m_tile->getShape());
 }
 
 int Coordinate::getX() {
-  return m_x;
+	return m_x;
 }
 
 int Coordinate::getY() {
-  return m_y;
+	return m_y;
 }
 
-//Override assign operator
-Coordinate &Coordinate::operator=(const Coordinate &coordinate) {
-  m_x = coordinate.m_x;
-  m_y = coordinate.m_y;
-  return *this;
+Tile* Coordinate::getTile() {
+	return m_tile;
 }
 
-std::string Coordinate::toString() {
-  return static_cast<char>(m_y + 65) + std::to_string(m_x);
+std::ostream &operator<<(std::ostream &out, const Coordinate &c) {
+	out << (char) (c.m_y + 65) << c.m_x;
+	return out;
+}
+
+Coordinate &Coordinate::operator=(const Coordinate &c) {
+	m_y = c.m_y;
+	m_x = c.m_x;
+	m_tile = new Tile(c.m_tile->getColour(), c.m_tile->getShape());
+	return *this;
+}
+
+bool operator==(const Coordinate &c1, const Coordinate &c2) {
+	return c1.m_x == c2.m_x && c1.m_y == c2.m_y;
+}
+
+void Coordinate::relocateX(int x) {
+	m_x += x;
+}
+
+void Coordinate::relocateY(int y) {
+	m_y += y;
+}
+
+void Coordinate::relocateCentral() {
+	m_x = 0;
+	m_y = 0;
 }

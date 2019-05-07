@@ -8,6 +8,15 @@ Player::Player(int id, std::string name){
   this->hand = new LinkedList();
 }
 
+Player::Player(int id, std::string name, LinkedList* newHand){
+  this->id = id;
+  this->name = name;
+  this->score = 0;
+  this->hand = newHand;
+}
+
+
+
 Player::~Player(){
   delete hand;
 }
@@ -20,6 +29,11 @@ int Player::getPlayerScore(){
   return this->score;
 }
 
+LinkedList* Player::getPlayerHand()
+{
+  return hand;
+}
+
 void Player::setPlayerName(std::string name){
   this->name = name;
 }
@@ -28,8 +42,8 @@ void Player::setPlayerScore(int score){
   this->score = score;
 }
 
-std::string Player::displayTileInHand(){
-   return hand->displayList();
+void Player::displayTilesInHand(){
+  std::cout << hand->displayList() << std::endl;
 }
 
 void Player::setPlayerId(int id){
@@ -38,8 +52,4 @@ void Player::setPlayerId(int id){
 
 int Player::getPlayerId(){
   return this->id;
-}
-
-LinkedList* Player::getPlayerHand(){
-  return this->hand;
 }

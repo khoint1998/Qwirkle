@@ -1,28 +1,29 @@
+#include <iostream>
+#include <vector>
 
-#ifndef ASSIGN2_COORDINATE_H
-#define ASSIGN2_COORDINATE_H
-
-#include <string>
+#include "Tile.h"
 
 class Coordinate {
-  private:
-    int m_x;
-    int m_y;
+private:
+	int m_x;
+	int m_y;
 
-  public:
-    Coordinate();
-    Coordinate(int x, int y);
-    Coordinate(int x, char y);
+	Tile *m_tile;
 
-    void setXY(int x, int y);
+public:
+	Coordinate(char y, int x);
+	Coordinate(char y, int x, Tile& t);
+	Coordinate(const Coordinate &c);
 
-    int getX();
-    int getY();
-  
-    //Override '=' operator
-    Coordinate &operator=(const Coordinate &coordinate);
+	int getX();
+	int getY();
+	Tile* getTile();
 
-    std::string toString();
+	friend std::ostream &operator<<(std::ostream &out, const Coordinate &c);
+	Coordinate &operator=(const Coordinate &c);
+	friend bool operator==(const Coordinate &c1, const Coordinate &c2);
+
+	void relocateX(int x);
+	void relocateY(int y);
+	void relocateCentral();
 };
-
-#endif //ASSIGN2_COORDINATE_H

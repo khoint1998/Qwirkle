@@ -9,6 +9,7 @@
 class Player {
 public:
     Player(int id, std::string name);
+    Player(int id, std::string name, LinkedList* newHand);
     ~Player();
 
     int getPlayerId();
@@ -20,9 +21,8 @@ public:
     void setPlayerName(std::string name);
     void setPlayerScore(int score);
 
-    std::string displayTileInHand();
+    void displayTilesInHand();
 
-private:
     int id;
     std::string name;
     int score;

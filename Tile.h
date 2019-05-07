@@ -3,6 +3,7 @@
 #define ASSIGN2_TILE_H
 
 #include <string>
+#include <iostream>
 
 // Define a Colour type
 typedef char Colour;
@@ -12,10 +13,8 @@ typedef int Shape;
 
 class Tile {
 public:
-   Colour colour;
-   Shape  shape;
 
-// Construcotrs
+// Constructors
    Tile(Colour c, Shape s);
    Tile();
 
@@ -26,14 +25,21 @@ public:
 // Setters
    void setColour(Colour c);
    void setShape(Shape s);
-
+   
 // compare 2 tiles
    bool compareTile(Tile* t);
-
-// toString and isExist
-   std::string toString();
-   bool isExist();
-
+   
+// Khoa's works:
+   Tile(const Tile &t);
+   bool isSameColour(const Tile &t);
+   bool isSameShape(const Tile &t);
+   friend std::ostream &operator<<(std::ostream &out, const Tile &t);
+   Tile &operator=(const Tile &t);
+   friend bool operator==(const Tile &t1, const Tile &t2);
+   
+private:
+   Colour colour;
+   Shape  shape;
 };
 
 #endif // ASSIGN2_TILE_H
